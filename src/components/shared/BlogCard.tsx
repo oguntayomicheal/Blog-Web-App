@@ -4,13 +4,16 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import Tag from "../ui/Tag";
 import Overlay from "../ui/Overlay";
 import Link from "next/link";
+import { PostTypes } from "../../../types/postTypes";
 
-const BlogCard = ({ post }: any) => {
+
+
+const BlogCard:React.FC<{post: PostTypes}> = ({ post }) => {
   return (
     <article className="relative rounded-lg overflow-hidden ">
       <div className="w-[1000px] h-[450px] relative">
         <Image
-          src={post.image_path}
+          src={post.img}
           fill
           alt={`image for ${post.title}`}
           className="object-cover"
@@ -24,7 +27,7 @@ const BlogCard = ({ post }: any) => {
       "
       >
         <div>
-          <Tag text={post.tags} />
+          <Tag text={post.category} />
           <h3 className="text-3xl font-extrabold uppercase text-white">
             {post.title}
           </h3>
@@ -32,6 +35,16 @@ const BlogCard = ({ post }: any) => {
       </div>
 
       <Link
+        href={`/blog/${post.id}`}
+        className="absolute bottom-0 p-5 text-white right-0 bg-tertiary 
+              rounded-tl-lg z-6 cursor-pointer
+              ">
+        <AiOutlineArrowRight size={30} />
+      </Link>
+
+
+
+      {/* <Link
         href={{
           pathname: `blog/${post.id}`,
           query: { ...post },
@@ -40,7 +53,7 @@ const BlogCard = ({ post }: any) => {
               rounded-tl-lg z-6 cursor-pointer
               ">
         <AiOutlineArrowRight size={30} />
-      </Link>
+      </Link> */}
     </article>
   );
 };

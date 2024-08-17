@@ -1,7 +1,7 @@
 import React from 'react'
 
 interface tagProps {
-    text: string[]
+    text: string
 }
 
 
