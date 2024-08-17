@@ -2,6 +2,7 @@ import React from 'react'
 import prisma from '@/lib/prismadb'
 import getCurrentUser from '../actions/getCurrentUser'
 import BlogCard from '@/components/shared/BlogCard'
+import DeletePosts from '@/components/shared/DeletePosts'
 
 
 
@@ -37,6 +38,8 @@ const page = async () => {
                     {posts.map((post) => (
                         <div key={post.id} className='relative'>
                             <BlogCard post={post as any} />
+
+                            <DeletePosts post={post as any} />
                         </div>
                     ))}
                 </div>
