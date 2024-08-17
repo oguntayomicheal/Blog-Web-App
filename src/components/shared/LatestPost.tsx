@@ -3,11 +3,15 @@ import React from "react";
 import { useState } from "react";
 import BlogCard from "./BlogCard";
 import Button from "../ui/button";
-import { blogData } from "@/constants/blogData";
+import { PostTypes } from "../../../types/postTypes";
 
-const LatestPost = () => {
-  const latestPost = blogData.filter((blog) => blog.latestPost === true);
 
+
+
+const LatestPost:React.FC<{posts: PostTypes[]}> = ({posts}) => {
+const latestPost = posts.sort(
+  (a,b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+)
   const [visibleBlogs, setVisibleBlogs] = useState(5);
 
   const showMoreBlogs = () => {
