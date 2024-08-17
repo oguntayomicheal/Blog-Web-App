@@ -3,22 +3,32 @@ import Hero from "@/components/shared/Hero";
 import TopPost from "@/components/shared/TopPost";
 import LatestPost from "@/components/shared/LatestPost";
 
+import prisma from '@/lib/prismadb'
 
 
-export default function Home() {
+const Home = async () => {
+  const posts = await prisma.blog.findMany({
+    include: {
+      user: true
+    }
+  })
+
+
   return (
     <>
-      <Hero />
+      <Hero posts={posts as any} />
       <div className="grid lg:grid-cols-3 grid-cols-1 lg:gap-10 
    w-[95%] mx-auto max-w-[1450px] overflow-hidden h-fit mt-10
    
    ">
 
-        <LatestPost />
-        <TopPost />
+        <LatestPost posts={posts as any}  />
+        <TopPost posts={posts as any} />
 
       </div>
 
     </>
   );
 }
+
+export default Home
