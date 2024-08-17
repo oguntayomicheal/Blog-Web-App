@@ -5,6 +5,7 @@ import Overlay from "../ui/Overlay";
 import Link from "next/link";
 import Image from "next/image";
 import { PostTypes } from "../../../types/postTypes";
+import { formatDate } from "../../../utils/formatDate";
 
 
 const Hero: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
@@ -29,7 +30,7 @@ const Hero: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
               className="flex items-center gap-3 font-light text-tertiary 
                            justify-center"
             >
-     
+
               {post.user.image && (
                 <Image
                   src={post.user.image}
@@ -40,7 +41,9 @@ const Hero: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
                 />
               )}
               <span>{post.user.name}</span>
-              {/* <span className="italic">{post.publishDate}</span> */}
+              <span className="italic font-light">
+                {formatDate(post.createdAt)}
+              </span>
             </div>
 
             <Link
@@ -80,7 +83,11 @@ const Hero: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
                 {" "}
                 {post.title}
               </h3>
-              <span className="font-light italic"> {post.user.name}</span>
+              {/* <span className="font-light italic"> {post.user.name}</span> */}
+
+              <span className="italic font-light">
+                {formatDate(post.createdAt)}
+              </span>
             </article>
           ))}
         </div>
