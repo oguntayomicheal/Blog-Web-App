@@ -13,6 +13,7 @@ const BlogCard:React.FC<{post: PostTypes}> = ({ post }) => {
     <article className="relative rounded-lg overflow-hidden ">
       <div className="w-[1000px] h-[450px] relative">
         <Image
+          // @ts-ignore
           src={post.img}
           fill
           alt={`image for ${post.title}`}

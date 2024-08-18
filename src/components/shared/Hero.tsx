@@ -51,6 +51,7 @@ const Hero: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
             >
               <div className="relative max-h-[600px] overflow-hidden shadow-xl">
                 <img
+                // @ts-ignore
                   src={post.img}
                   alt={`image for ${post.title}`}
                   className="object-cover w-full h-full "
@@ -71,6 +72,7 @@ const Hero: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
               >
                 <div className="relative overflow-hidden h-72 shadow-xl w-full">
                   <img
+                    // @ts-ignore
                     src={post.img}
                     alt={`image for ${post.title}`}
                     className="object-cover w-full h-full"

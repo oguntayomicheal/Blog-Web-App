@@ -31,6 +31,7 @@ const TopPost: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
             <article key={index}>
               <div className=" relative cursor-pointer">
                 <Image
+                  // @ts-ignore
                   src={post.img}
                   width={800}
                   height={800}
