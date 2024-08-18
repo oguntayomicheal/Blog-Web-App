@@ -3,10 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import Tag from "../ui/Tag";
 import Overlay from "../ui/Overlay";
-import { blogData } from "@/constants/blogData";
+import { PostTypes } from "../../../types/postTypes";
+import { formatDate } from "../../../utils/formatDate";
 
-const TopPost = () => {
-  const topPost = blogData.filter((blog) => blog.topPost === true);
+
+
+const TopPost: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
+
+
+  const topPost = posts.filter((post) => post.topPost === true);
   return (
     <section aria-labelledby="top-post">
       <div className="w-full text-center">
@@ -21,24 +26,25 @@ const TopPost = () => {
       <div className="flex h-full flex-col gap-12 items-center ">
         {topPost.map((post, index) => (
           <Link
-            href={{
-              pathname: `blog/${post.id}`,
-              query: { ...post },
-            }}
+            href={`/blog/${post.id}`}
           >
             <article key={index}>
               <div className=" relative cursor-pointer">
-                <Image
-                  src={post.image_path}
-                  width={800}
-                  height={800}
-                  alt={`Image for ${post.title}`}
-                />
+                {
+                  post.img && (
+                    <Image
+                      src={post.img}
+                      width={800}
+                      height={800}
+                      alt={`Image for ${post.title}`}
+                    />
+                  )
+                }
                 <Overlay />
               </div>
 
               <div className="w-full flex justify-center">
-                <Tag text={post.tags} />
+                <Tag text={post.category} />
 
               </div>
 
@@ -47,12 +53,11 @@ const TopPost = () => {
 
               <div className=" flex gap-3 justify-center mt-2">
                 <span className="font-light">
-
-                  By: {post.authorName}
+                  By: {post.user.name}
                 </span>
-                <span className="italic">
-                  {post.publishDate}
-
+                <span className="italic font-light">
+                  {formatDate(post.createdAt)}
+                  {/* {formatDate(post.createdAt.toString())} */}
                 </span>
 
               </div>

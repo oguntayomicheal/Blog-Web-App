@@ -3,16 +3,46 @@ import React from "react";
 import { useState } from "react";
 import BlogCard from "./BlogCard";
 import Button from "../ui/button";
-import { blogData } from "@/constants/blogData";
+import { PostTypes } from "../../../types/postTypes";
+import clsx from "clsx";
 
-const Posts = () => {
+
+
+
+const Posts: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
   // const latestPost = blogData.filter((blog) => blog.latestPost === true);
 
   const [visibleBlogs, setVisibleBlogs] = useState(5);
 
+  const [selectedCategory, setSelectedCategory] = useState('all')
+
   const showMoreBlogs = () => {
     setVisibleBlogs((prevVisibleBlogs) => prevVisibleBlogs + 3);
   };
+
+  const filterPostsByCategory = () => {
+    if (selectedCategory === 'all') {
+      return posts.slice(0, visibleBlogs)
+    } else {
+      return posts.filter(
+        (posts) => posts.category === selectedCategory
+      ).slice(0, visibleBlogs)
+    }
+  }
+
+  const categories = [
+    'Adventure',
+    'Wanderlust',
+    'Culture',
+    'Discovery',
+    'Journeys'
+  ]
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category)
+    setVisibleBlogs(5)
+
+  }
 
   return (
     <section className="col-span-2" aria-labelledby="latest-post">
@@ -22,16 +52,32 @@ const Posts = () => {
           className="text-center text-2xl font-extrabold uppercase text-tertiary inline-block px-2 mb-10
 "
         >
-          Latest Post
+          All Post
         </h2>
       </div>
 
+      <div className="flex justify-center space-x-4 flex-wrap">
+        {
+          categories.map((category) => (
+            <button key={category}
+              onClick={() => handleCategoryChange(category)}
+              className={clsx(
+                selectedCategory === category ? 'bg-tertiary/60 text-white' : 'bg-tertiary text-white',
+                'px-4 py-2 rounded hover:bg-tertiary/50 mb-10'
+              )}
+            >
+              {category === 'all' ? 'All' : category}
+            </button>
+          ))
+        }
+      </div>
+
       <div className="flex flex-col gap-10 h-full">
-        {blogData.slice(0, visibleBlogs).map((post, id) => (
+        {filterPostsByCategory().slice(0, visibleBlogs).map((post, id) => (
           <BlogCard post={post} key={id} />
         ))}
 
-        {visibleBlogs < blogData.length && (
+        {visibleBlogs < posts.length && (
           <div className="flex justify-center">
             <Button
               onClick={showMoreBlogs}
