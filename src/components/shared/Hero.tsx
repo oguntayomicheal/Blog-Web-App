@@ -50,12 +50,15 @@ const Hero: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
               href={`/blog/${post.id}`}
             >
               <div className="relative max-h-[600px] overflow-hidden shadow-xl">
-                <img
-                // @ts-ignore
-                  src={post.img}
-                  alt={`image for ${post.title}`}
-                  className="object-cover w-full h-full "
-                />
+                {
+                  post.img && (
+                    <img
+                      src={post.img}
+                      alt={`image for ${post.title}`}
+                      className="object-cover w-full h-full "
+                    />
+                  )
+                }
 
                 <Overlay />
               </div>
@@ -64,19 +67,24 @@ const Hero: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
         ))}
 
         <div className="grid grid-cols-3 gap-8 max-lg:grid-cols-1">
-          {bottomFeatured.map((post, id) => (
-            <article className="flex flex-col gap-3 items-center text-center relative">
+          {bottomFeatured.map((post) => (
+            <article key={post.id} className="flex flex-col gap-3 items-center text-center relative">
               <Link
                 href={`/blog/${post.id}`}
                 className="w-full"
               >
                 <div className="relative overflow-hidden h-72 shadow-xl w-full">
-                  <img
-                    // @ts-ignore
-                    src={post.img}
-                    alt={`image for ${post.title}`}
-                    className="object-cover w-full h-full"
-                  />
+
+                  {
+                    post.img && (
+                      <img
+                        src={post.img}
+                        alt={`image for ${post.title}`}
+                        className="object-cover w-full h-full "
+                      
+                      />
+                    )
+                  }
                   <Overlay />
                 </div>
               </Link>
@@ -88,7 +96,7 @@ const Hero: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
               {/* <span className="font-light italic"> {post.user.name}</span> */}
 
               <span className="italic font-light">
-                {formatDate(post.createdAt)}
+                {formatDate(post.createdAt).toString()}
               </span>
             </article>
           ))}

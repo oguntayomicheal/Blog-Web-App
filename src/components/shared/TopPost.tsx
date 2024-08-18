@@ -30,13 +30,16 @@ const TopPost: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
           >
             <article key={index}>
               <div className=" relative cursor-pointer">
-                <Image
-                  // @ts-ignore
-                  src={post.img}
-                  width={800}
-                  height={800}
-                  alt={`Image for ${post.title}`}
-                />
+                {
+                  post.img && (
+                    <Image
+                      src={post.img}
+                      width={800}
+                      height={800}
+                      alt={`Image for ${post.title}`}
+                    />
+                  )
+                }
                 <Overlay />
               </div>
 
@@ -54,6 +57,7 @@ const TopPost: React.FC<{ posts: PostTypes[] }> = ({ posts }) => {
                 </span>
                 <span className="italic font-light">
                   {formatDate(post.createdAt)}
+                  {/* {formatDate(post.createdAt.toString())} */}
                 </span>
 
               </div>

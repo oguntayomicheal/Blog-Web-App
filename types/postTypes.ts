@@ -9,12 +9,5 @@ export interface PostTypes {
   featured: boolean;
   topPost: boolean;
   category: string;
-
-
-  authorImage: string;
-  anthorName: string;
-  publishDate: string;
- 
-
   user: User;
 }

@@ -54,8 +54,8 @@ h-96 overflow-hidden">
                     </span>
 
                     <GoogleLoginButton onClick={() => socialAction('google')} />
-                    <FacebookLoginButton />
-                    <GithubLoginButton />
+                    {/* <FacebookLoginButton />
+                    <GithubLoginButton /> */}
 
                 </div>
 

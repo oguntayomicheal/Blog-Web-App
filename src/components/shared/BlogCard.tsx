@@ -8,18 +8,21 @@ import { PostTypes } from "../../../types/postTypes";
 
 
 
-const BlogCard:React.FC<{post: PostTypes}> = ({ post }) => {
+const BlogCard: React.FC<{ post: PostTypes }> = ({ post }) => {
   return (
     <article className="relative rounded-lg overflow-hidden ">
       <div className="w-[1000px] h-[450px] relative">
-        <Image
-          // @ts-ignore
-          src={post.img}
-          fill
-          alt={`image for ${post.title}`}
-          className="object-cover"
-        />
+        {
+          post.img && (
+            <Image
+              src={post.img}
+              fill
+              alt={`image for ${post.title}`}
+              className="object-cover"
+            />
 
+          )
+        }
         <Overlay />
       </div>
 

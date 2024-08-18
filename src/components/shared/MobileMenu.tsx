@@ -15,7 +15,11 @@ import { User } from "@prisma/client";
 import { signOut } from "next-auth/react";
 import { userTypes } from "../../../types/userTypes";
 
-const MobileMenu = ({ user }: { user: userTypes }) => {
+interface MobileMenuProps {
+  user: User
+}
+
+const MobileMenu: React.FC<MobileMenuProps> = ({ user }: { user: userTypes }) => {
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
 
   const mobileMenuHandler = () => {
