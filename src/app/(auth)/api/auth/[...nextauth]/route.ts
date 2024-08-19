@@ -8,6 +8,8 @@ import prisma from "@/lib/prismadb";
 
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
+
+// @ts-ignore
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
 
