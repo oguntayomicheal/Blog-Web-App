@@ -32,6 +32,7 @@ export default async function RootLayout({
 
 
           <body className={`${roboto.className} overflow-x-hidden bg-light`}>
+          {/* @ts-ignore */}
             <Navbar user={user} />
             {children}
             <Footer />
