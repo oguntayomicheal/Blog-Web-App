@@ -21,10 +21,8 @@
 # 📖 Blog web app Repository <a name="about-project"></a>
 
 >
-
 This blog web app provides users with a seamless platform to create, publish, and manage their content. Designed with a focus on user experience, the application ensures smooth navigation, real-time updates, and efficient content management. Ideal for bloggers and content creators, this platform allows users to express their ideas and share them with a wider audience.
-
-The README includes instructions for setting up the development environment, running the application, and contributing to the project.
+> The README includes instructions for setting up the development environment, running the application, and contributing to the project.
 
 ## 🛠 Built With <a name="built-with"></a>
 
@@ -36,7 +34,6 @@ The README includes instructions for setting up the development environment, run
     <li><a>https://nextjs.org/</a></li>
   </ul>
 </details>
-
 
 <details>
   <summary>MongoDB Atlas Database </summary>
